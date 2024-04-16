@@ -29,6 +29,14 @@ public class TextLine implements TextBlock {
   // +---------+
 
   /**
+   * elements returns a TextBlock array that contains the elements of the
+   * TextBlock, or empty
+   */
+  public TextBlock[] elements() {
+    return new TextBlock[] {};
+  } // elements()
+
+  /**
    * Get one row from the block.
    * 
    * @pre i == 0

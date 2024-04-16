@@ -4,7 +4,7 @@ import java.io.PrintWriter;
  * Utilities for TextBlocks.
  * 
  * @author Samuel A. Rebelsky
- * @author Your Name Here
+ * @author Medhashree Adhikari
  */
 public class TBUtils {
   // +--------------+------------------------------------------------------
@@ -12,12 +12,14 @@ public class TBUtils {
   // +--------------+
 
   /**
-   * A really big sequence of dashes. This sequence may grow as the program operates.
+   * A really big sequence of dashes. This sequence may grow as the program
+   * operates.
    */
   static String lotsOfDashes = "--";
 
   /**
-   * A really big sequence of spaces. This sequence may grow as the program operates.
+   * A really big sequence of spaces. This sequence may grow as the program
+   * operates.
    */
   static String lotsOfSpaces = "  ";
 
@@ -66,5 +68,74 @@ public class TBUtils {
     // Extract an appropriate length substring
     return lotsOfSpaces.substring(0, len);
   } // spaces(int)
+
+  // +-----------------+---------------------------------------------------
+  // | Equality Checks |
+  // +-----------------+
+  /**
+   * check to see if TextBlocks t1 and t2 have the same lines
+   * 
+   * @param t1
+   * @param t2
+   * @return bool
+   * @throws Exception
+   */
+  static boolean equal(TextBlock t1, TextBlock t2) throws Exception {
+    if (t1.height() != t2.height()) {
+      return false;
+    } // condtion check height
+
+    for (int i = 0; i < t1.height(); i++) {
+      try {
+        if (!t1.row(i).equals(t2.row(i))) {
+          return false;
+        } // condtion check
+      } catch (Exception e) {
+        return false;
+      } // try/catch
+    } // loop
+    return true;
+  } // equal(t1, t2)
+
+  /**
+   * checks if it was built the same
+   * @param t1
+   * @param t2
+   * @return
+   * @throws Exception
+   */
+  static boolean eqv(TextBlock t1, TextBlock t2) throws Exception {
+    // if the lines are the same,
+    if ((equal(t1, t2)) && 
+        (t1.elements().length == t2.elements().length) && 
+        (t1.getClass() == t2.getClass())) {
+      // if the length of t1 is 0, then true
+      if (t1.elements().length == 0) {
+        return true;
+      } // else
+      
+      boolean _final = true;
+
+      for(int i = 0; i < t1.elements().length; i ++) {
+        // update final with true and false
+        _final = _final && eqv(t1.elements()[i], t2.elements()[i]);
+      } // loop
+
+      return _final;
+    } else {
+      // if the check is not true
+      return false;
+    } // condition check
+  } // eqv(t1, t2)
+
+  /**
+   * check if t1 and t2 are same in memory location
+   * @param t1
+   * @param t2
+   * @return
+   */
+  static boolean eq(TextBlock t1, TextBlock t2) {
+    return (t1 == t2);
+  } // eq(t1, t2)
 
 } // class TBUtils

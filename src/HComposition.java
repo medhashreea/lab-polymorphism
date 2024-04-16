@@ -35,6 +35,14 @@ public class HComposition implements TextBlock {
   // +---------+
 
   /**
+   * elements returns a TextBlock array that contains the elements of the
+   * TextBlock, or empty
+   */
+  public TextBlock[] elements() {
+    return new TextBlock[] { this.left, this.right };
+  } // elements()
+
+  /**
    * Get one row from the block.
    * 
    * @pre 0 <= i < this.height()

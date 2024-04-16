@@ -29,6 +29,14 @@ public class BoxedBlock implements TextBlock {
   // +---------+
 
   /**
+   * elements returns a TextBlock array that contains the elements of the
+   * TextBlock, or empty
+   */
+  public TextBlock[] elements() {
+    return new TextBlock[] { this.contents };
+  } // elements()
+
+  /**
    * Get one row from the block.
    *
    * @pre 0 <= i < this.height()

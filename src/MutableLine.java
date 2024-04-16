@@ -29,6 +29,14 @@ public class MutableLine implements TextBlock {
   // +---------+
 
   /**
+   * elements returns a TextBlock array that contains the elements of the
+   * TextBlock, or empty
+   */
+  public TextBlock[] elements() {
+    return new TextBlock[] {};
+  } // elements()
+
+  /**
    * Set the line.
    */
   public void set(String line) {
