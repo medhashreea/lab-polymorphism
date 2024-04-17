@@ -17,7 +17,7 @@ public class Truncated implements TextBlock {
   // | Constructors |
   // +--------------+
   /**
-   * create a new text block where the input text will be 
+   * create a new text block where the input text will be
    * truncated respective to the width input
    * 
    * @throws Exception
@@ -34,11 +34,11 @@ public class Truncated implements TextBlock {
   // | Methods |
   // +---------+
   /**
-   * elements returns a TextBlock array that contains the elements of the 
+   * elements returns a TextBlock array that contains the elements of the
    * TextBlock, or empty
    */
   public TextBlock[] elements() {
-    return new TextBlock[] {this.textContents};
+    return new TextBlock[] { this.textContents };
   } // elements()
 
   /**

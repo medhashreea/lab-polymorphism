@@ -19,7 +19,7 @@ public class RightJustified implements TextBlock {
   // +--------------+
 
   /**
-   * create a new text block where the input text will be 
+   * create a new text block where the input text will be
    * right justified respective to the width input
    * 
    * @param text
@@ -37,7 +37,7 @@ public class RightJustified implements TextBlock {
   // +---------+-----------------------------------------------------------
   // | Methods |
   // +---------+
-  
+
   /**
    * elements returns a TextBlock array that contains the elements of the
    * TextBlock, or empty

@@ -99,6 +99,7 @@ public class TBUtils {
 
   /**
    * checks if it was built the same
+   * 
    * @param t1
    * @param t2
    * @return
@@ -106,17 +107,17 @@ public class TBUtils {
    */
   static boolean eqv(TextBlock t1, TextBlock t2) throws Exception {
     // if the lines are the same,
-    if ((equal(t1, t2)) && 
-        (t1.elements().length == t2.elements().length) && 
+    if ((equal(t1, t2)) &&
+        (t1.elements().length == t2.elements().length) &&
         (t1.getClass() == t2.getClass())) {
       // if the length of t1 is 0, then true
       if (t1.elements().length == 0) {
         return true;
       } // else
-      
+
       boolean _final = true;
 
-      for(int i = 0; i < t1.elements().length; i ++) {
+      for (int i = 0; i < t1.elements().length; i++) {
         // update final with true and false
         _final = _final && eqv(t1.elements()[i], t2.elements()[i]);
       } // loop
@@ -130,6 +131,7 @@ public class TBUtils {
 
   /**
    * check if t1 and t2 are same in memory location
+   * 
    * @param t1
    * @param t2
    * @return

@@ -7,7 +7,7 @@ public class HorizontallyFlipped implements TextBlock {
   // +--------+------------------------------------------------------------
   // | Fields |
   // +--------+
-  
+
   // text we want to horizontally flip
   private TextBlock textContents;
 

@@ -130,17 +130,13 @@ public class TBExpt {
      * | Flip Both |
      * +-----------+--------------------------------------------
      */
-    // ******************* //
-    // ISSUE
-    // BothFilp = new FlipBoth(new FlipBoth(boxedVBox));
-    // DOES NOT WORK
-    // ******************* //
     // VComposition VBox1 = new VComposition(block1, block2);
     // BoxedBlock boxedVBox = new BoxedBlock(VBox1);
-    // TextBlock BothFilp;
-    // BothFilp = new FlipBoth(boxedVBox);
-    // // BothFilp = new FlipBoth(new FlipBoth(new FlipBoth(boxedVBox)));
-    // TBUtils.print(pen, BothFilp);
+    // //TextBlock BothFilp;
+    // TextBlock flipOne = new FlipBoth(boxedVBox);
+    // TextBlock flipSecond = new FlipBoth(flipOne);
+    // //TBUtils.print(pen, flipOne);
+    // TBUtils.print(pen, flipSecond);
 
     /**
      * +----------------+---------------------------------------
@@ -156,28 +152,19 @@ public class TBExpt {
     // BoxedBlock boxed = new BoxedBlock(LJBox);
     // TBUtils.print(pen, boxed);
 
-    // TextBlock myName = new TextLine("Medhashree");
-    // TextBlock myLastName = new TextLine("Adhikari");
-    // TextBlock empty = new TextLine("");
-    // TextBlock oneItem = new BoxedBlock(new TextLine("m"));
-    // TextBlock myNameBox = new BoxedBlock(new TextLine("Medhashree"));
-    // TextBlock myNameBoxBox = new BoxedBlock(new BoxedBlock(new TextLine("Medhashree")));
-    // TextBlock myLastNameBox = new BoxedBlock(new TextLine("Adhikari"));
-    // TextBlock truncOneItem = new Truncated(oneItem, 2);
-    // TextBlock evenNumSpcMyName = new Centered(myName, myName.width() + 8);
-    // TextBlock oddNumSpcMyName = new Centered(myName, myName.width() + 13);
-    // TextBlock nameWidth = new Centered(myName, myName.width());
-    // TextBlock evenNumSpcMyNameBoxBox = new Centered(myNameBoxBox, myName.width() + 8);
-    // TextBlock centerEmpty = new Centered(empty, 4);
-    // truncOneItem = new Truncated(oneItem, 2);
     TextBlock myName = new TextLine("Medhashree");
     TextBlock myLastName = new TextLine("Adhikari");
     TextBlock fullNameHComp = new HComposition(myName, myLastName);
     TextBlock fullNameVComp = new VComposition(myName, myLastName);
+    TextBlock empty = new TextLine("");
+    TextBlock emptyBox = new BoxedBlock(new TextLine(""));
     TextBlock oneItem = new BoxedBlock(new TextLine("m"));
+    TextBlock fullNameBox = new BoxedBlock(new VComposition(fullNameHComp, oneItem));
+    TextBlock myNameBoxBox = new BoxedBlock(new BoxedBlock(new TextLine("Medhashree")));
 
-    TextBlock truncMyNameBox = new Truncated((new BoxedBlock(new VComposition(fullNameHComp, oneItem))), 8);
-    TBUtils.print(pen, truncMyNameBox);
+    TextBlock a = new FlipBoth(empty);
+
+    TBUtils.print(pen, a);
 
     pen.close();
   } // main(String[])

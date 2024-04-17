@@ -16,7 +16,7 @@ public class FlipBoth implements TextBlock {
   // +--------------+
 
   /**
-   * create a new text block where the input text will be 
+   * create a new text block where the input text will be
    * flipped horizontally and vertically
    * 
    * @param text
@@ -47,9 +47,9 @@ public class FlipBoth implements TextBlock {
     if ((i >= this.height()) || (i < 0)) {
       throw new Exception("Invalid! Enter a height less than " + height() + "!");
     }
-
+    String row = textContents.row(this.height() - (i + 1));
     // flips vertically then reverses
-    return new StringBuilder(textContents.row(this.height() - (i + 1))).reverse().toString();
+    return new StringBuilder(row).reverse().toString();
 
   } // row(i)
 
@@ -57,13 +57,13 @@ public class FlipBoth implements TextBlock {
    * Determine how many rows are in the block.
    */
   public int height() {
-    return this.textContents.width();
+    return this.textContents.height();
   } // height()
 
   /**
    * Determine how many columns are in the block.
    */
   public int width() {
-    return this.textContents.height();
+    return this.textContents.width();
   } // width()
 }

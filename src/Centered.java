@@ -18,7 +18,7 @@ public class Centered implements TextBlock {
   // +--------------+
 
   /**
-   * create a new text block where the input text will be 
+   * create a new text block where the input text will be
    * centered respective to the width input
    * 
    * @param text
@@ -28,7 +28,7 @@ public class Centered implements TextBlock {
   public Centered(TextBlock text, int width) throws Exception {
     // if given width is less than the width of the text
     if (width < text.width()) {
-      throw new Exception ("Invalid! Enter a width greater than or equal to the length of the block!");
+      throw new Exception("Invalid! Enter a width greater than or equal to the length of the block!");
     }
 
     this.textContents = text;
@@ -39,11 +39,11 @@ public class Centered implements TextBlock {
   // | Methods |
   // +---------+
   /**
-   * elements returns a TextBlock array that contains the elements of the 
+   * elements returns a TextBlock array that contains the elements of the
    * TextBlock, or empty
    */
   public TextBlock[] elements() {
-    return new TextBlock[] {this.textContents};
+    return new TextBlock[] { this.textContents };
   } // elements()
 
   /**
@@ -60,9 +60,9 @@ public class Centered implements TextBlock {
 
     // calculating spaces
     int numSpaces = this.width - this.textContents.width();
-    int leftSpcNum = numSpaces/2; // spaces before the text
+    int leftSpcNum = numSpaces / 2; // spaces before the text
     int rightSpcNum = numSpaces - leftSpcNum; // spaces after the text
-    
+
     // formating text
     String spc = " ";
     String leftSpc = spc.repeat(leftSpcNum);
@@ -70,7 +70,7 @@ public class Centered implements TextBlock {
 
     return leftSpc + this.textContents.row(i) + rightSpc;
   } // row(i)
-  
+
   /**
    * Determine how many rows are in the block.
    */
