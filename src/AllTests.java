@@ -1,3 +1,7 @@
+import java.beans.Transient;
+
+import org.junit.Test;
+
 public class AllTests {
   // +-----------------------+--------------------------------
   // | TextBlock Declaration |
@@ -14,7 +18,7 @@ public class AllTests {
   private TextBlock empty;
   private TextBlock emptyBox;
   private TextBlock oneItem;
-  private TextBlock myNameBox;
+  private TextBlock fullNameBox;
   private TextBlock myNameBoxBox;
   private TextBlock myLastNameBox;
 
@@ -25,8 +29,7 @@ public class AllTests {
   private TextBlock truncEmpty;
   private TextBlock truncEmptyBox;
   private TextBlock truncOneItem;
-  private TextBlock truncMyNameBox;
-  private TextBlock truncMyNameBoxBox;
+  private TextBlock truncDoubleBox;
 
   // center
   private TextBlock evenNumSpcMyName;
@@ -80,18 +83,17 @@ public class AllTests {
     empty = new TextLine("");
     emptyBox = new BoxedBlock(new TextLine(""));
     oneItem = new BoxedBlock(new TextLine("m"));
-    myNameBox = new BoxedBlock(new TextLine("Medhashree"));
+    fullNameBox = new BoxedBlock(new VComposition(fullNameHComp, oneItem));
     myNameBoxBox = new BoxedBlock(new BoxedBlock(new TextLine("Medhashree")));
     myLastNameBox = new BoxedBlock(new TextLine("Adhikari"));
 
     // truncate
     truncMyName = new Truncated(myName, truncWidth);
-    fakeTruncMyName = new Truncated(myName, 10);
+    fakeTruncMyName = new Truncated(myName, myName.width());
     emptyMyName = new Truncated(myName, 0);
     truncEmpty = new Truncated(empty, 0);
     truncOneItem = new Truncated(oneItem, 2);
-    truncMyNameBox = new Truncated(myNameBox, truncWidth);
-    truncMyNameBoxBox = new Truncated(myNameBoxBox, truncWidth);
+    truncDoubleBox = new Truncated((new BoxedBlock(new VComposition(fullNameHComp, oneItem))), truncWidth);
 
     // center
     evenNumSpcMyName = new Centered(myName, myName.width() + 8);
@@ -106,15 +108,15 @@ public class AllTests {
     // horizontally flip
     fullNameHFlippedHComp = new HorizontallyFlipped(fullNameHComp);
     fullNameHFlippedVComp = new HorizontallyFlipped(fullNameVComp);
-    myNameHFlippedTwice = new HorizontallyFlipped(new HorizontallyFlipped(myNameBox));
-    myNameBoxHFlippedThrice = new HorizontallyFlipped(new HorizontallyFlipped(new HorizontallyFlipped(myNameBox)));
+    myNameHFlippedTwice = new HorizontallyFlipped(new HorizontallyFlipped(fullNameBox));
+    myNameBoxHFlippedThrice = new HorizontallyFlipped(new HorizontallyFlipped(new HorizontallyFlipped(fullNameBox)));
     emptyHFlip = new HorizontallyFlipped(empty);
 
     // vertically flip
     fullNameVFlippedHComp = new VerticallyFlipped(fullNameHComp);
     fullNameVFlippedVComp = new VerticallyFlipped(fullNameVComp);
-    myNameVFlippedTwice = new VerticallyFlipped(new VerticallyFlipped(myNameBox));
-    myNameBoxVFlippedThrice = new VerticallyFlipped(new VerticallyFlipped(new VerticallyFlipped(myNameBox)));
+    myNameVFlippedTwice = new VerticallyFlipped(new VerticallyFlipped(fullNameBox));
+    myNameBoxVFlippedThrice = new VerticallyFlipped(new VerticallyFlipped(new VerticallyFlipped(fullNameBox)));
     emptyVFlip = new VerticallyFlipped(empty);
 
     // flip both
@@ -129,7 +131,7 @@ public class AllTests {
 
     // Eqv
 
-    //Eq
+    // Eq
 
   } // test initialization
 
@@ -139,7 +141,56 @@ public class AllTests {
    * +----------------+
    */
 
+  @Test
+  public void basicTruncTest() throws Exception {
+    assertEquals(
+      "Medhashr", 
+      truncMyName, 
+      "basic truncate");
+  }
+  
+  @Test
+  public void fakeTruncTest() throws Exception {
+    assertEquals(
+      "Medhashree", 
+      fakeTruncMyName, 
+      "width is the size of the TextBlock, so truncate nothing");
+  }
 
+  @Test
+  public void truncAll() throws Exception {
+    assertEquals(
+      "",
+      emptyMyName, 
+      "truncate the width, so nothing is left"
+    )
+  }
+
+  // test to truncate an empty string
+  @Test
+  public void emptyTruncTest() throws Exception {
+    assertEquals(
+      "", 
+      truncEmpty,
+      "truncating an empty string results to an empty string");
+  }
+
+  @Test
+  public void oneItemTest() throws Exception {
+    assertEquals("+-", truncOneItem.row(0), "row zero of truncating one item to width 2");
+    assertEquals("|m", truncOneItem.row(1), "row one of truncating one item to width 2");
+    assertEquals("+-", truncOneItem.row(2), "row two of truncating one item to width 2");
+  }
+
+  @Test
+  public void truncDoubleBoxTest() throws Exception {
+    assertEquals("+-------", truncOneItem.row(0), "row zero of truncating to width 8");
+    assertEquals("|Medhash", truncOneItem.row(1), "row one of truncating to width 8");
+    assertEquals("|+-+", truncOneItem.row(2), "row two of truncating to width 8");
+    assertEquals("||m|", truncOneItem.row(3), "row three of truncating to width 8");
+    assertEquals("|+-+", truncOneItem.row(4), "row four of truncating to width 8");
+    assertEquals("+-------", truncOneItem.row(5), "row five of truncating to width 8");
+  }
 
   /**
    * +----------------+---------------------------------------

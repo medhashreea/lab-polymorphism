@@ -156,21 +156,28 @@ public class TBExpt {
     // BoxedBlock boxed = new BoxedBlock(LJBox);
     // TBUtils.print(pen, boxed);
 
-    TextBlock myName = new TextLine("Medhashree");
-    TextBlock myLastName = new TextLine("Adhikari");
-    TextBlock empty = new TextLine("");
-    TextBlock oneItem = new BoxedBlock(new TextLine("m"));
-    TextBlock myNameBox = new BoxedBlock(new TextLine("Medhashree"));
-    TextBlock myNameBoxBox = new BoxedBlock(new BoxedBlock(new TextLine("Medhashree")));
-    TextBlock myLastNameBox = new BoxedBlock(new TextLine("Adhikari"));
-
+    // TextBlock myName = new TextLine("Medhashree");
+    // TextBlock myLastName = new TextLine("Adhikari");
+    // TextBlock empty = new TextLine("");
+    // TextBlock oneItem = new BoxedBlock(new TextLine("m"));
+    // TextBlock myNameBox = new BoxedBlock(new TextLine("Medhashree"));
+    // TextBlock myNameBoxBox = new BoxedBlock(new BoxedBlock(new TextLine("Medhashree")));
+    // TextBlock myLastNameBox = new BoxedBlock(new TextLine("Adhikari"));
+    // TextBlock truncOneItem = new Truncated(oneItem, 2);
     // TextBlock evenNumSpcMyName = new Centered(myName, myName.width() + 8);
     // TextBlock oddNumSpcMyName = new Centered(myName, myName.width() + 13);
     // TextBlock nameWidth = new Centered(myName, myName.width());
     // TextBlock evenNumSpcMyNameBoxBox = new Centered(myNameBoxBox, myName.width() + 8);
     // TextBlock centerEmpty = new Centered(empty, 4);
+    // truncOneItem = new Truncated(oneItem, 2);
+    TextBlock myName = new TextLine("Medhashree");
+    TextBlock myLastName = new TextLine("Adhikari");
+    TextBlock fullNameHComp = new HComposition(myName, myLastName);
+    TextBlock fullNameVComp = new VComposition(myName, myLastName);
+    TextBlock oneItem = new BoxedBlock(new TextLine("m"));
 
-    // TBUtils.print(pen, nameWidth);
+    TextBlock truncMyNameBox = new Truncated((new BoxedBlock(new VComposition(fullNameHComp, oneItem))), 8);
+    TBUtils.print(pen, truncMyNameBox);
 
     pen.close();
   } // main(String[])
